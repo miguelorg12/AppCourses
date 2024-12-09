@@ -2,6 +2,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html, body { height: 100%; }
+html, body { height: 100%; width: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.custom-dialog-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.default-snackbar {
+    background-color: #323232; /* Default color */
+    color: #ffffff;
+  }
   
+.success-snackbar {
+    --mdc-snackbar-container-color: #4caf50;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+  
+.error-snackbar {
+    --mdc-snackbar-container-color: #f44336;
+    --mdc-snackbar-supporting-text-color: white; /* Red */
+  }
+  
+.warning-snackbar {
+    --mdc-snackbar-container-color: #ff9800;
+    --mdc-snackbar-supporting-text-color: white; /* Orange */
+  }
+  
+.info-snackbar {
+    --mdc-snackbar-container-color: #2196f3;;
+    --mdc-snackbar-supporting-text-color: white;
+   
+  }

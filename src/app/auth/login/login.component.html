@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="max-w-md w-full bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="bg-blue-600 text-white p-4">
+      <h1 class="text-2xl font-bold">Iniciar Sesión</h1>
+    </div>
+    <div class="p-4">
+      <form class="bg-white p-6 rounded-lg shadow" [formGroup]="loginForm">
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
+            Correo Electrónico
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="correo"
+            name="email" 
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+            required>
+            <div *ngIf="loginForm.controls['correo'].errors && (loginForm.controls['correo'].touched || loginForm.controls['correo'].dirty)">
+              <div class="text-red-500 text-xs" *ngIf="loginForm.controls['correo'].errors['required']">
+                Email es requerido
+              </div>
+            </div>
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
+            Contraseña
+          </label>
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            name="password" 
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+            required>
+            <div *ngIf="loginForm.controls['password'].errors && (loginForm.controls['password'].touched || loginForm.controls['password'].dirty)">
+              <div class="text-red-500 text-xs" *ngIf="loginForm.controls['password'].errors['required']">
+                Contraseña es requerida
+              </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <button 
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            (click)="login()"
+            >
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

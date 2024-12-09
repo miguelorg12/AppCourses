@@ -1,1 +1,21 @@
-<p>client-list works!</p>
+<app-navbar></app-navbar>
+
+<main class="p-4 ">
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-4">
+        <h2 *ngIf="!courseId" class="text-xl font-semibold mb-2 sm:mb-0"> Todos los Clientes</h2>
+        <h2 *ngIf="courseId" class="text-xl font-semibold mb-2 sm:mb-0"> Clientes del curso {{ courseId }}</h2>
+        <button (click)="openDialog(false)" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full sm:w-auto text-center">
+            Agregar Cliente
+        </button>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div *ngFor="let client of clients" class="bg-white p-4 rounded-lg shadow">
+            <h3 class="font-bold">{{ client.nombre }}</h3>
+            <p class="text-sm text-gray-600">Teléfono: {{ client.telefono }}</p>
+            <p class="text-sm text-gray-600">Curso: {{ client.curso }}</p>
+            <div class="mt-2">
+                <button (click)="openDialog(true, client)" class="text-green-500 hover:text-green-700">Editar cliente</button>
+            </div>
+        </div>
+    </div>
+</main>

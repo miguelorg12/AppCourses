@@ -1,1 +1,30 @@
-<p>upd-course works!</p>
+<div class="p-4 bg-gray-100">
+    <form class="bg-gray-100 p-6 rounded-lg max-w-lg mx-auto" [formGroup]="updform">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Curso</label>
+            <input formControlName="nombre"  type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="updform.controls['nombre'].errors && (updform.controls['nombre'].touched || updform.controls['nombre'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['nombre'].errors['required']">
+                    Nombre es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+            <textarea formControlName="descripcion" id="description" name="description" rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+            <div *ngIf="updform.controls['descripcion'].errors && (updform.controls['descripcion'].touched || updform.controls['descripcion'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['descripcion'].errors['required']">
+                    Descripción es requerida
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between">
+            <button (click)="updCourse()" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 sm:mb-0 w-full sm:w-auto">
+                Actualizar curso
+            </button>
+            <button (click)="closeDialog()"  class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 w-full sm:w-auto text-center">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

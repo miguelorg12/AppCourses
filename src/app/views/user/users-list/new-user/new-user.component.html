@@ -1,0 +1,39 @@
+<div class="p-4 bg-gray-100">
+    <form class="bg-gray-100 p-6 rounded-lg max-w-lg mx-auto" [formGroup]="newform">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+            <input formControlName="nombre" type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['nombre'].errors && (newform.controls['nombre'].touched || newform.controls['nombre'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['nombre'].errors['required']">
+                    Nombre es requerido
+                </div>
+            </div> 
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+            <input formControlName="correo" type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['correo'].errors && (newform.controls['correo'].touched || newform.controls['correo'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['correo'].errors['required']">
+                    Email es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+            <input formControlName="password" type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['password'].errors && (newform.controls['password'].touched || newform.controls['password'].dirty)">
+                <div class="text-red-500 text-xs " *ngIf="newform.controls['password'].errors['required']">
+                    Contraseña es requerida
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between">
+            <button (click)="newUser()" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 sm:mb-0 w-full sm:w-auto">
+                Crear Usuario
+            </button>
+            <button (click)="closeDialog()" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 w-full sm:w-auto text-center">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

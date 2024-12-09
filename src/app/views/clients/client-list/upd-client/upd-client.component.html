@@ -1,1 +1,50 @@
-<p>upd-client works!</p>
+<div class="p-4 bg-gray-100">
+    <form class="bg-gray-100 p-6 rounded-lg  max-w-lg mx-auto" [formGroup]="updform">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Cliente</label>
+            <input formControlName="nombre" type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="updform.controls['nombre'].errors && (updform.controls['nombre'].touched || updform.controls['nombre'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['nombre'].errors['required']">
+                    Nombre es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo del Cliente</label>
+            <input formControlName="correo" type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="updform.controls['correo'].errors && (updform.controls['correo'].touched || updform.controls['correo'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['correo'].errors['required']">
+                    Correo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono del Cliente</label>
+            <input formControlName="telefono" type="text" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="updform.controls['telefono'].errors && (updform.controls['telefono'].touched || updform.controls['telefono'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['telefono'].errors['required']">
+                    Teléfono es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="course" class="block text-gray-700 text-sm font-bold mb-2">Curso Asignado</label>
+            <select formControlName="curso_id" id="course" name="course" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option *ngFor="let course of courses" [value]="course.id">{{ course.nombre }}</option>
+            </select>
+            <div *ngIf="updform.controls['curso_id'].errors && (updform.controls['curso_id'].touched || updform.controls['curso_id'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="updform.controls['curso_id'].errors['required']">
+                    Curso es requerido
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between">
+            <button (click)="updClient()" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 sm:mb-0 w-full sm:w-auto">
+                Actualizar Cliente
+            </button>
+            <button (click)="closeDialog()" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 w-full sm:w-auto text-center">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

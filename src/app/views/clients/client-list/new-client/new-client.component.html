@@ -1,1 +1,50 @@
-<p>new-client works!</p>
+<div class="p-4 bg-gray-100">
+    <form class="bg-gray-100 p-6 rounded-lg max-w-lg mx-auto" [formGroup]="newform">
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Cliente</label>
+            <input formControlName="nombre" type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['nombre'].errors && (newform.controls['nombre'].touched || newform.controls['nombre'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['nombre'].errors['required']">
+                    Nombre es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo del Cliente</label>
+            <input formControlName="correo" type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['correo'].errors && (newform.controls['correo'].touched || newform.controls['correo'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['correo'].errors['required']">
+                    Correo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono del Cliente</label>
+            <input formControlName="telefono" type="text" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <div *ngIf="newform.controls['telefono'].errors && (newform.controls['telefono'].touched || newform.controls['telefono'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['telefono'].errors['required']">
+                    Teléfono es requerido
+                </div>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="course" class="block text-gray-700 text-sm font-bold mb-2">Curso Asignado</label>
+            <select formControlName="curso_id" id="course" name="course" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option *ngFor="let course of courses" [value]="course.id">{{ course.nombre }}</option>
+            </select> 
+            <div *ngIf="newform.controls['curso_id'].errors && (newform.controls['curso_id'].touched || newform.controls['curso_id'].dirty)">
+                <div class="text-red-500 text-xs" *ngIf="newform.controls['curso_id'].errors['required']">
+                    Curso es requerido
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between">
+            <button (click)="newClient()" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 sm:mb-0 w-full sm:w-auto">
+                Crear Cliente
+            </button>
+            <button (click)="closeDialog()" lass="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 w-full sm:w-auto text-center">
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

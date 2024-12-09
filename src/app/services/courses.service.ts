@@ -9,5 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class CoursesService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${environment.api}/cursos`)
+  }
+
+  newCourse(course: Course): Observable<Course> {
+    return this.http.post<Course>(`${environment.api}/cursos`, course)
+  }
+
+  updateCourse(course: Course, course_id: number): Observable<Course> {
+    return this.http.put<Course>(`${environment.api}/cursos/${course_id}`, course)
+  }
+
+  
 }

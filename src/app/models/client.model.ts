@@ -1,3 +1,8 @@
 export interface Client {
-    id: number;
+    id?: number;
+    nombre: string;
+    curso_id: number;
+    curso: string;
+    telefono: number;
+    correo: string;
 }
