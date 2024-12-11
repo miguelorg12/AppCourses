@@ -22,6 +22,10 @@ export class ClientsService {
   updateClient(client: Client, client_id: number): Observable<Client> {
     return this.http.put<Client>(`${environment.api}/clientes/${client_id}`, client)
   }
+
+  deleteClient(client_id: number): Observable<Client> {
+    return this.http.delete<Client>(`${environment.api}/clientes/${client_id}`)
+  }
   getClientsPerCourse(course_id: number): Observable<Client> {
     return this.http.get<Client>(`${environment.api}/cursos/clientes/${course_id}`)
   }

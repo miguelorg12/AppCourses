@@ -10,6 +10,7 @@ import { NewCourseComponent } from './new-course/new-course.component';
 import { UpdCourseComponent } from './upd-course/upd-course.component';
 import { Router } from '@angular/router';
 import { CoursesService } from '../../../services/courses.service';
+import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-courses-list',
   imports: [NavbarComponent, CommonModule],
@@ -20,7 +21,8 @@ export class CoursesListComponent implements OnInit {
   courses : Course[] = []
   constructor(private dialog: MatDialog,
     private router: Router,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private toast: ToastService
   ){
 
   }
@@ -61,4 +63,19 @@ export class CoursesListComponent implements OnInit {
 
     } 
   }
+
+  deleteCourse(course_id?: number){
+    if(course_id){
+      this.coursesService.deleteCourse(course_id).subscribe({
+        next: (data: any) => {
+          this.toast.showToast('Curso eliminado correctamente', 3000, 'success-snackbar', 'right', 'top')
+          this.getCourses()
+        },
+        error: (error: any) => {
+          this.toast.showToast('Error al eliminar el curso', 3000, 'error-snackbar', 'right', 'top')
+          console.log(error)
+        }
+      })
+      }
+    }
 }

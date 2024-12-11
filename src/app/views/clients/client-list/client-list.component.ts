@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewClientComponent } from './new-client/new-client.component';
 import { UpdClientComponent } from './upd-client/upd-client.component';
 import { ClientsService } from '../../../services/clients.service';
+import { ToastService } from '../../../services/toast.service';
 @Component({
   selector: 'app-client-list',
   imports: [NavbarComponent, CommonModule],
@@ -21,7 +22,8 @@ export class ClientListComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private clientservice: ClientsService
+    private clientservice: ClientsService,
+    private toast: ToastService
   ){
 
   }
@@ -72,6 +74,21 @@ export class ClientListComponent implements OnInit, AfterViewInit {
       });
       dialogRef.afterClosed().subscribe(result => {
       });
+    }
+  }
+  deleteClient(client_id?: number){
+    if(client_id){
+      this.clientservice.deleteClient(client_id).subscribe({
+        next: (response: any) =>{
+          this.toast.showToast('Cliente eliminado correctamente', 3000, 'success-snackbar', 'right', 'top')
+          this.getClients()
+
+        },
+        error: (error: any) => {
+          this.toast.showToast('Error en el servidor', 3000, 'error-snackbar', 'right', 'top')
+          console.log(error)
+        }
+      })
     }
   }
 }

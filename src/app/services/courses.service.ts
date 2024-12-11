@@ -23,5 +23,9 @@ export class CoursesService {
     return this.http.put<Course>(`${environment.api}/cursos/${course_id}`, course)
   }
 
+  deleteCourse(course_id: number): Observable<Course> {
+    return this.http.delete<Course>(`${environment.api}/cursos/${course_id}`)
+  }
+
   
 }
