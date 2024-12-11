@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet, RouterLink, Router, NavigationEnd, Event } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +8,8 @@ import { RouterOutlet, RouterLink, Router } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  headerTitle: string = 'CursosApp';
+
   constructor(private router: Router){}
 
   logout() {
